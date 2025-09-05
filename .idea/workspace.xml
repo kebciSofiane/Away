@@ -4,14 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb4097de-f26e-4c10-b542-c87b513fc093" name="Changes" comment="Implemented the entities">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/away/dto/ItemDto.java" afterDir="false" />
+    <list default="true" id="bb4097de-f26e-4c10-b542-c87b513fc093" name="Changes" comment="change name &quot;object&quot; to &quot;item&quot;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/away/Services/DiscoveriesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/away/Services/DiscoveriesService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/away/Services/ObjectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/away/Services/ItemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/away/Services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/away/Services/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/away/db/models/DiscoveryEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/away/db/models/DiscoveryEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/away/db/models/ObjectEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/away/db/models/ItemEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/away/db/models/ItemEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/away/db/models/ItemEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/away/db/models/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/away/db/models/UserEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/away/db/repositories/DiscoveryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/away/db/repositories/DiscoveryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/away/db/repositories/ObjectRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/away/db/repositories/ItemRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/away/db/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/away/db/repositories/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/away/dto/DiscoveryDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/away/dto/DiscoveryDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/away/dto/ObjectDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/away/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/away/dto/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/away/dto/ItemDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/away/dto/ItemDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V1__create_users.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V1__create_users.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -137,7 +142,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1757059389731</updated>
-      <workItem from="1757059390934" duration="9649000" />
+      <workItem from="1757059390934" duration="16934000" />
     </task>
     <task id="LOCAL-00001" summary="Project init">
       <option name="closed" value="true" />
@@ -171,7 +176,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757070236275</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="change name &quot;object&quot; to &quot;item&quot;">
+      <option name="closed" value="true" />
+      <created>1757078996538</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1757078996538</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,6 +206,7 @@
     <MESSAGE value="init bdd + docker" />
     <MESSAGE value="Implemented the tree structure" />
     <MESSAGE value="Implemented the entities" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented the entities" />
+    <MESSAGE value="change name &quot;object&quot; to &quot;item&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="change name &quot;object&quot; to &quot;item&quot;" />
   </component>
 </project>

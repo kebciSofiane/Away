@@ -1,12 +1,15 @@
 package com.away.db.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.security.Timestamp;
 
+@Getter
+@Setter
+@Entity
+@Table(name = "discovered_objects")
 public class DiscoveryEntity {
 
     @Id

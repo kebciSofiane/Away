@@ -1,9 +1,15 @@
 package com.away.db.models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.security.Timestamp;
+
+@Getter
+@Setter
 @Entity
-@Table(name = "objects")
+@Table(name = "items")
 public class ItemEntity {
 
         @Id
@@ -26,4 +32,6 @@ public class ItemEntity {
         @Column(name = "item_loc")
         private String itemFirstLocation;
 
+        @Column(name = "created_at")
+        private Timestamp createdAt;
 }

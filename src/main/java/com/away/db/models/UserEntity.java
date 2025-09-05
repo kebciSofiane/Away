@@ -1,7 +1,12 @@
 package com.away.db.models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+
+@Setter
+@Getter
 @Entity
 @Table(name = "users")
 public class UserEntity {
@@ -14,6 +19,9 @@ public class UserEntity {
 
     @Column(name = "username")
     private String userName;
+
+    @Column(name = "email")
+    private String userEmail;
 
     @Column(name = "user_pic")
     private String userPic;
