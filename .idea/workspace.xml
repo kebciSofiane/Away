@@ -4,16 +4,40 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb4097de-f26e-4c10-b542-c87b513fc093" name="Changes" comment="Project init">
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V1__create_users.sql" afterDir="false" />
+    <list default="true" id="bb4097de-f26e-4c10-b542-c87b513fc093" name="Changes" comment="init bdd + docker">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/away/Services/DiscoveriesService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/away/Services/ObjectService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/away/Services/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/away/config/WebConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/away/controller/DiscoveryController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/away/controller/ObjectController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/away/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/away/db/models/DiscoveryEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/away/db/models/ObjectEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/away/db/models/UserEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/away/db/repositories/DiscoveryRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/away/db/repositories/ObjectRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/away/db/repositories/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/away/dto/DiscoveryDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/away/dto/ObjectDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/away/dto/UserDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/AwayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/away/AwayApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/demo/AwayApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/away/AwayApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -69,6 +93,11 @@
     ]
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="Away" />
@@ -83,7 +112,7 @@
     </configuration>
     <configuration name="AwayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="demo" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.demo.AwayApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="AwayApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -104,7 +133,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1757059389731</updated>
-      <workItem from="1757059390934" duration="2193000" />
+      <workItem from="1757059390934" duration="5220000" />
     </task>
     <task id="LOCAL-00001" summary="Project init">
       <option name="closed" value="true" />
@@ -114,7 +143,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757059826878</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="init bdd + docker">
+      <option name="closed" value="true" />
+      <created>1757062393671</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1757062393671</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -133,6 +170,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Project init" />
-    <option name="LAST_COMMIT_MESSAGE" value="Project init" />
+    <MESSAGE value="init bdd + docker" />
+    <option name="LAST_COMMIT_MESSAGE" value="init bdd + docker" />
   </component>
 </project>
