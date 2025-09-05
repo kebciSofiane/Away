@@ -11,7 +11,6 @@ import java.util.List;
 @Repository
 public interface ItemRepository extends JpaRepository<ItemEntity,Long> {
 
-    ArrayList<ItemEntity> getAll();
     ItemEntity findByItemId(long id);
     List<ItemEntity> findByItemUser(UserEntity user);
     Boolean existsByItemId(long id);

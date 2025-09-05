@@ -1,9 +1,12 @@
 package com.away.dto;
 
-import jakarta.persistence.Column;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.security.Timestamp;
 
+@Getter
+@Setter
 public class ItemDto {
 
     private String itemId;

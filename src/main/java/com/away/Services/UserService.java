@@ -59,13 +59,11 @@ public class UserService {
         }
     }
 
-    public UserEntity deleteUser(UserEntity user) {
-        if (userRepository.existsByUserId(user.getUserId())) {
-             userRepository.deleteById(user.getUserId());
-             return user;
+    public void deleteUser(long userId) {
+        if (userRepository.existsByUserId(userId)) {
+             userRepository.deleteById(userId);
         } else {
             /*TODO Throw exception : User doesn't exist*/
-            return null;
         }
     }
 

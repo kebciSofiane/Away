@@ -3,6 +3,7 @@ package com.away.Services;
 import com.away.db.models.ItemEntity;
 import com.away.db.models.UserEntity;
 import com.away.db.repositories.ItemRepository;
+import com.away.db.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ import java.util.List;
 @Service
 public class ItemService {
     ItemRepository itemRepository;
+    UserRepository userRepository;
 
     @Autowired
     public ItemService(ItemRepository itemRepository) {
@@ -30,8 +32,8 @@ public class ItemService {
         }
     }
 
-    public List<ItemEntity> getAllItemsByUser(UserEntity user) {
-         return itemRepository.findByItemUser(user);
+    public List<ItemEntity> getAllItemsByUser(long userId) {
+         return itemRepository.findByItemUser(userRepository.findByUserId(userId));
     }
 
     public ItemEntity AddItem(ItemEntity itemEntity) {
@@ -44,14 +46,12 @@ public class ItemService {
         }
     }
 
-    public ItemEntity DeleteItem(ItemEntity itemEntity) {
-        if(itemRepository.existsByItemId(itemEntity.getItemId())) {
-            itemRepository.delete(itemEntity);
-            return itemEntity;
+    public void DeleteItem(long itemId) {
+        if(itemRepository.existsByItemId(itemId)) {
+            itemRepository.deleteById(itemId);
         } else
         {
             /* TODO Item doesn't exist*/
-            return null;
         }
     }
 }

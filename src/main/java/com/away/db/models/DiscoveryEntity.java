@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 @Getter
 @Setter
@@ -30,7 +30,7 @@ public class DiscoveryEntity {
     @Column(name ="disc_pic")
     private  String discoveryPic;
 
-    @Column(name = "desc_loc")
+    @Column(name = "disc_loc")
     private String location;
 
     @Column(name = "discovered_at")

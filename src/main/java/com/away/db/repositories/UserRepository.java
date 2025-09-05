@@ -9,9 +9,8 @@ import java.util.ArrayList;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
-    UserEntity findByUserId(long id);
-
-    UserEntity findByUserEmail(String email);
+     UserEntity findByUserId(long id);
+     UserEntity findByUserEmail(String email);
      Boolean existsByUserId(long id);
      Boolean existsByUserEmail(String email);
 
