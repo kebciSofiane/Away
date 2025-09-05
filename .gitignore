@@ -1,0 +1,33 @@
+# Maven
+/target/
+/pom.xml.tag
+/pom.xml.releaseBackup
+/pom.xml.versionsBackup
+/logs/
+
+# Spring Boot specific
+*.log
+*.tmp
+*.out
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+out/
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+*.env
+application-*.yml
+application-*.properties
+
+# Node (si tu fais du front Angular dans le même repo)
+/node_modules/
+/dist/
