@@ -9,4 +9,8 @@ import java.sql.Timestamp;
 
 public class UserDto {
 
+    private String userId;
+    private String userName;
+    private String userPic;
+
 }

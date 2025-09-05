@@ -15,7 +15,7 @@ public class DiscoveryEntity {
 
     @ManyToOne
     @JoinColumn(name = "ob_id")
-    private ObjectEntity discoveryObject;
+    private ItemEntity discoveredItem;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -25,7 +25,7 @@ public class DiscoveryEntity {
     private String discoveryNote;
 
     @Column(name ="disc_pic")
-    private  String obPic;
+    private  String discoveryPic;
 
     @Column(name = "desc_loc")
     private String location;
