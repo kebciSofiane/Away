@@ -12,14 +12,13 @@ import java.util.List;
 @RestController
 public class DiscoveryController {
 
-    private DiscoveriesService discoveryService;
+    private final DiscoveriesService discoveryService;
 
-    @Autowired
     public DiscoveryController(DiscoveriesService discoveryService) {
         this.discoveryService = discoveryService;
     }
 
-    @GetMapping("/discoveries/")
+    @GetMapping("/discoveries")
     public ResponseEntity<List<DiscoveryEntity>> discoveries() {
         return new ResponseEntity<>(discoveryService.getAllDiscoveries(), HttpStatus.OK);
     }
@@ -39,14 +38,14 @@ public class DiscoveryController {
         return new ResponseEntity<>(discoveryService.getDiscoveryByUser(userId), HttpStatus.OK);
     }
 
-    @PostMapping("/discoveries/")
+    @PostMapping("/discoveries")
     public ResponseEntity<DiscoveryEntity> createDiscovery(@RequestBody DiscoveryEntity discoveryEntity) {
         return new ResponseEntity<>(discoveryService.addDiscovery(discoveryEntity), HttpStatus.CREATED );
     }
 
     @DeleteMapping("/discoveries/{id}")
-    public ResponseEntity<DiscoveryEntity> deleteDiscovery(@PathVariable long id) {
+    public ResponseEntity<Void> deleteDiscovery(@PathVariable long id) {
         discoveryService.deleteDiscovery(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return ResponseEntity.noContent().build();
     }
 }

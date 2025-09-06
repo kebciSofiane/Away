@@ -43,7 +43,8 @@ public class DiscoveriesService {
     }
 
     public List<DiscoveryEntity> getDiscoveryByUser(long userId) {
-        return discoveryRepository.findByDiscoveryUser(userRepository.findByUserId(userId));
+       //return discoveryRepository.findByDiscoveryUser(userRepository.findByUserId(userId));
+    return null;
     }
 
     public DiscoveryEntity addDiscovery(DiscoveryEntity discoveryEntity) {

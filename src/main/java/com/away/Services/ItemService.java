@@ -33,7 +33,8 @@ public class ItemService {
     }
 
     public List<ItemEntity> getAllItemsByUser(long userId) {
-         return itemRepository.findByItemUser(userRepository.findByUserId(userId));
+         //return itemRepository.findByItemUser(itemRepository.findByItemUser(userId));
+    return null;
     }
 
     public ItemEntity AddItem(ItemEntity itemEntity) {

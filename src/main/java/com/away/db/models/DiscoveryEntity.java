@@ -14,6 +14,7 @@ public class DiscoveryEntity {
 
     @Id
     @Column(name = "disc_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long discoveryId;
 
     @ManyToOne
