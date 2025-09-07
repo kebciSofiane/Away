@@ -29,5 +29,14 @@ public class UserEntity {
     @Column(name = "user_pass")
     private String userPass;
 
-
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                ", userPic='" + userPic + '\'' +
+                ", userPass='" + userPass + '\'' +
+                '}';
+    }
 }

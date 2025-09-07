@@ -7,11 +7,12 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ItemRepository extends JpaRepository<ItemEntity,Long> {
-
-    ItemEntity findByItemId(long id);
+    Boolean existsByItemNameAndItemUser(String name, UserEntity user);
+    Optional<ItemEntity> findByItemId(long id);
     List<ItemEntity> findByItemUser(UserEntity user);
     Boolean existsByItemId(long id);
     Boolean existsByItemUser(UserEntity user);

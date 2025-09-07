@@ -1,8 +1,11 @@
 package com.away.db.models;
 
+import jakarta.annotation.Generated;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenerationTime;
 
 import java.sql.Timestamp;
 
@@ -27,12 +30,27 @@ public class ItemEntity {
         private  String itemPic;
 
         @ManyToOne
-        @JoinColumn(name = "user_id")
+        @JoinColumn(name = "user_id", nullable = false)
         private UserEntity itemUser;
 
         @Column(name = "item_loc")
-        private String itemFirstLocation;
+        private String itemStartLocation;
 
-        @Column(name = "created_at")
+        @CreationTimestamp
+        @Column(name = "created_at", updatable = false)
         private Timestamp createdAt;
+
+
+        @Override
+        public String toString() {
+                return "ItemEntity{" +
+                        "itemId=" + itemId +
+                        ", itemName='" + itemName + '\'' +
+                        ", itemDescription='" + itemDescription + '\'' +
+                        ", itemPic='" + itemPic + '\'' +
+                        ", itemUser=" + itemUser +
+                        ", itemFirstLocation='" + itemStartLocation + '\'' +
+                        ", createdAt=" + createdAt +
+                        '}';
+        }
 }

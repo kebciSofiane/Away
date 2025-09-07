@@ -13,4 +13,14 @@ public class CreateItemDto {
     private Long userId;
     private String itemStartLocation;
 
+    @Override
+    public String toString() {
+        return "CreateItemDto{" +
+                "itemName='" + itemName + '\'' +
+                ", itemDescription='" + itemDescription + '\'' +
+                ", itemPic='" + itemPic + '\'' +
+                ", userId=" + userId +
+                ", itemFirstLocation='" + itemStartLocation + '\'' +
+                '}';
+    }
 }

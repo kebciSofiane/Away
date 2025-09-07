@@ -4,6 +4,13 @@ import com.away.db.models.ItemEntity;
 import com.away.db.models.UserEntity;
 import com.away.db.repositories.ItemRepository;
 import com.away.db.repositories.UserRepository;
+import com.away.dto.createDto.CreateItemDto;
+import com.away.dto.responseDto.ResponseItemDto;
+import com.away.exceptions.ItemAlreadyExistsException;
+import com.away.exceptions.ItemDoesntExistException;
+import com.away.mappers.ItemsMapper;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,46 +20,50 @@ import java.util.List;
 public class ItemService {
     ItemRepository itemRepository;
     UserRepository userRepository;
+    ItemsMapper itemsMapper;
 
     @Autowired
-    public ItemService(ItemRepository itemRepository) {
+    public ItemService(ItemRepository itemRepository, UserRepository userRepository, ItemsMapper itemsMapper) {
         this.itemRepository = itemRepository;
+        this.userRepository = userRepository;
+        this.itemsMapper = itemsMapper;
     }
 
-    public List<ItemEntity> getAllItems() {
-        return itemRepository.findAll();
+    public List<ResponseItemDto> getAllItems() {
+        return itemsMapper.toResponseItemDTOs(itemRepository.findAll());
     }
 
-    public ItemEntity getItemById(long id) {
-        if (itemRepository.existsByItemId(id)) {
-            return itemRepository.findByItemId(id);
-        } else  {
-            /* TODO Item doesn't exist */
-            return null;
+    public ResponseItemDto getItemById(long id) {
+       ItemEntity item = itemRepository.findById(id).orElseThrow(
+               () -> new ItemDoesntExistException(id)
+       );
+       return itemsMapper.toResponseItemDTO(item);
+    }
+
+    public List<ResponseItemDto> getAllItemsByUser(long userId) {
+        UserEntity user = userRepository.findByUserId(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+         return itemsMapper.toResponseItemDTOs(itemRepository.findByItemUser(user));
+    }
+
+    public ResponseItemDto AddItem(CreateItemDto createItemDto) {
+        UserEntity user = userRepository.findByUserId(createItemDto.getUserId())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        if (itemRepository.existsByItemNameAndItemUser(createItemDto.getItemName(), user)) {
+            throw new ItemAlreadyExistsException(createItemDto.getUserId());
         }
-    }
 
-    public List<ItemEntity> getAllItemsByUser(long userId) {
-         //return itemRepository.findByItemUser(itemRepository.findByItemUser(userId));
-    return null;
-    }
+        ItemEntity itemEntity = itemsMapper.toItemEntity(createItemDto);
+        itemEntity.setItemUser(user);
 
-    public ItemEntity AddItem(ItemEntity itemEntity) {
-        if (!itemRepository.existsByItemId(itemEntity.getItemId())) {
-            return itemRepository.save(itemEntity);
-        }
-        else  {
-            /* TODO : Item already exists*/
-            return null;
-        }
+        ItemEntity createdItem = itemRepository.save(itemEntity);
+        return itemsMapper.toResponseItemDTO(createdItem);
     }
 
     public void DeleteItem(long itemId) {
-        if(itemRepository.existsByItemId(itemId)) {
-            itemRepository.deleteById(itemId);
-        } else
-        {
-            /* TODO Item doesn't exist*/
-        }
+        ItemEntity item = itemRepository.findByItemId(itemId)
+                .orElseThrow(()-> new ItemDoesntExistException(itemId));
+        itemRepository.delete(item);
     }
 }

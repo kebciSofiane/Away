@@ -10,6 +10,8 @@ public class CreateDiscoveryDto {
 
     private long userId;
 
+    private long itemId;
+
     private String discoveryNote;
 
     private  String discoveryPic;

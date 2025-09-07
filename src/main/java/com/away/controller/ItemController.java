@@ -2,10 +2,12 @@ package com.away.controller;
 
 import com.away.Services.ItemService;
 import com.away.db.models.ItemEntity;
+import com.away.dto.createDto.CreateItemDto;
+import com.away.dto.responseDto.ResponseItemDto;
+import com.away.dto.responseDto.ResponseUserDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -18,22 +20,22 @@ public class ItemController {
     }
 
     @GetMapping("/items/")
-    public ResponseEntity<List<ItemEntity>> getItems() {
+    public ResponseEntity<List<ResponseItemDto>> getItems() {
         return new ResponseEntity<>(itemService.getAllItems(), HttpStatus.OK);
     }
 
     @GetMapping("/items/{id}")
-    public ResponseEntity<ItemEntity>   getItemById( @PathVariable long id) {
+    public ResponseEntity<ResponseItemDto>   getItemById( @PathVariable long id) {
         return new ResponseEntity<>(itemService.getItemById(id), HttpStatus.OK);
     }
 
     @GetMapping("/users/{userId}/items")
-    public ResponseEntity<List<ItemEntity>> getItemsByUser(@PathVariable long userId) {
+    public ResponseEntity<List<ResponseItemDto>> getItemsByUser(@PathVariable long userId) {
         return new ResponseEntity<>(itemService.getAllItemsByUser(userId), HttpStatus.OK);
     }
 
     @PostMapping("/items")
-    public ResponseEntity<ItemEntity> addItem(@RequestBody ItemEntity itemEntity) {
+    public ResponseEntity<ResponseItemDto> addItem(@RequestBody CreateItemDto itemEntity) {
         return new ResponseEntity<>(itemService.AddItem(itemEntity), HttpStatus.CREATED);
     }
 

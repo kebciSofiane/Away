@@ -6,6 +6,7 @@ import com.away.dto.createDto.CreateUserDto;
 import com.away.dto.responseDto.ResponseUserDto;
 import com.away.dto.updateDto.UpdateUserDto;
 import com.away.exceptions.UserAlreadyExistsException;
+import com.away.exceptions.UserDoesntExistException;
 import com.away.mappers.UserMapper;
 import org.mapstruct.control.MappingControl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,36 +36,35 @@ public class UserService {
     public  ResponseUserDto getUserByEmail(String email) {
         return userRepository.findByUserEmail(email)
                 .map(userMapper::toResponseUserDTO)
-                .orElseThrow(()-> new RuntimeException("User not found"));
+                .orElseThrow(()->  new UserDoesntExistException(email));
     }
 
     public ResponseUserDto getUserByUserId(long userId) {
         UserEntity user = userRepository.findByUserId(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
-
+                .orElseThrow(() ->  new UserDoesntExistException(userId));
         return userMapper.toResponseUserDTO(user);
     }
 
     public ResponseUserDto addUser(CreateUserDto createUserDto) {
         if (userRepository.existsByUserEmail(createUserDto.getUserEmail())) {
-            throw new UserAlreadyExistsException("User already exists");
+            throw new UserAlreadyExistsException(createUserDto.getUserEmail());
         }
         return  userMapper.toResponseUserDTO(userRepository.save(userMapper.toUserEntity(createUserDto)));
     }
 
-    public ResponseUserDto updateUser(UpdateUserDto updatedUserDto, long id) {
-        return userRepository.findById(id)
+    public ResponseUserDto updateUser(UpdateUserDto updatedUserDto, long userId) {
+        return userRepository.findById(userId)
                 .map(user -> {
                     userMapper.updateUserFromDto(updatedUserDto, user);
                     UserEntity savedUser = userRepository.save(user);
                     return userMapper.toResponseUserDTO(savedUser);
                 })
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new UserDoesntExistException(userId));
     }
 
     public void deleteUser(long userId) {
         UserEntity user = userRepository.findByUserId(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new UserDoesntExistException(userId));
         userRepository.delete(user);
     }
 
