@@ -6,11 +6,9 @@ import com.away.db.repositories.ItemRepository;
 import com.away.db.repositories.UserRepository;
 import com.away.dto.createDto.CreateItemDto;
 import com.away.dto.responseDto.ResponseItemDto;
-import com.away.exceptions.ItemAlreadyExistsException;
-import com.away.exceptions.ItemDoesntExistException;
+import com.away.exceptions.item.ItemAlreadyExistsException;
+import com.away.exceptions.item.ItemNotFoundException;
 import com.away.mappers.ItemsMapper;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +33,7 @@ public class ItemService {
 
     public ResponseItemDto getItemById(long id) {
        ItemEntity item = itemRepository.findById(id).orElseThrow(
-               () -> new ItemDoesntExistException(id)
+               () -> new ItemNotFoundException(id)
        );
        return itemsMapper.toResponseItemDTO(item);
     }
@@ -63,7 +61,7 @@ public class ItemService {
 
     public void DeleteItem(long itemId) {
         ItemEntity item = itemRepository.findByItemId(itemId)
-                .orElseThrow(()-> new ItemDoesntExistException(itemId));
+                .orElseThrow(()-> new ItemNotFoundException(itemId));
         itemRepository.delete(item);
     }
 }

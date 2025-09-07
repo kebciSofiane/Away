@@ -7,8 +7,8 @@ import lombok.Setter;
 @Setter
 public class UpdateUserDto {
 
-    private String discoveryNote;
-
-    private  String discoveryPic;
+    private String userName;
+    private String userPic;
+    private String userPass;
 
 }

@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -25,32 +26,41 @@ public class DiscoveryController {
 
     @GetMapping("/discoveries")
     public ResponseEntity<List<ResponseDiscoveryDto>> getAllDiscoveries() {
-        return new ResponseEntity<>(discoveryService.getAllDiscoveries(), HttpStatus.OK);
+        List<ResponseDiscoveryDto> responseDiscoveryDtoList = discoveryService.getAllDiscoveries();
+        return responseDiscoveryDtoList.isEmpty()
+                ? ResponseEntity.noContent().build()
+                : ResponseEntity.ok(responseDiscoveryDtoList);
     }
 
     @GetMapping("/discoveries/{id}")
     public ResponseEntity<ResponseDiscoveryDto> getDiscoveryById(@PathVariable long id) {
-        return new ResponseEntity<>(discoveryService.getDiscoveryById(id), HttpStatus.OK);
+        return ResponseEntity.ok(discoveryService.getDiscoveryById(id));
     }
 
     @GetMapping("/items/{itemId}/discoveries")
     public ResponseEntity<List<ResponseDiscoveryDto>> getDiscoveriesByItem(@PathVariable long itemId) {
-        return new ResponseEntity<>(discoveryService.getDiscoveryByItem(itemId), HttpStatus.OK);
+        List<ResponseDiscoveryDto> responseDiscoveryDtoList = discoveryService.getDiscoveryByItem(itemId);
+        return responseDiscoveryDtoList.isEmpty()
+                ? ResponseEntity.noContent().build()
+                : ResponseEntity.ok(responseDiscoveryDtoList);
     }
 
     @GetMapping("/users/{userId}/discoveries")
     public ResponseEntity<List<ResponseDiscoveryDto>> getDiscoveriesByUser(@PathVariable long userId) {
-        return new ResponseEntity<>(discoveryService.getDiscoveryByUser(userId), HttpStatus.OK);
+        List<ResponseDiscoveryDto> responseDiscoveryDtoList = discoveryService.getDiscoveryByUser(userId);
+        return  responseDiscoveryDtoList.isEmpty()
+                ? ResponseEntity.noContent().build()
+                : ResponseEntity.ok(responseDiscoveryDtoList);
     }
 
     @PostMapping("/discoveries")
     public ResponseEntity<ResponseDiscoveryDto> createDiscovery(@RequestBody CreateDiscoveryDto createDiscoveryDto) {
-        return new ResponseEntity<>(discoveryService.addDiscovery(createDiscoveryDto), HttpStatus.CREATED );
+        return ResponseEntity.status(HttpStatus.CREATED).body(discoveryService.addDiscovery(createDiscoveryDto));
     }
 
     @PutMapping("/discoveries/{id}")
-    public ResponseEntity<ResponseDiscoveryDto> updateUser(@RequestBody UpdateDiscoveryDto updateDiscoveryDto, @PathVariable long id) {
-        return new ResponseEntity<>(discoveryService.updateDiscovery(updateDiscoveryDto, id), HttpStatus.OK);
+    public ResponseEntity<ResponseDiscoveryDto> updateDiscovery(@RequestBody UpdateDiscoveryDto updateDiscoveryDto, @PathVariable long id) {
+        return ResponseEntity.ok(discoveryService.updateDiscovery(updateDiscoveryDto, id));
     }
 
     @DeleteMapping("/discoveries/{id}")

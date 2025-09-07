@@ -3,6 +3,7 @@ package com.away.db.models;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
 
@@ -34,6 +35,7 @@ public class DiscoveryEntity {
     @Column(name = "disc_loc")
     private String location;
 
-    @Column(name = "discovered_at")
+    @CreationTimestamp
+    @Column(name = "discovered_at", updatable = false)
     private Timestamp discoveredAt;
 }
