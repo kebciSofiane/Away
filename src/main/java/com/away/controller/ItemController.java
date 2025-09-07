@@ -5,6 +5,7 @@ import com.away.db.models.ItemEntity;
 import com.away.dto.createDto.CreateItemDto;
 import com.away.dto.responseDto.ResponseItemDto;
 import com.away.dto.responseDto.ResponseUserDto;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -43,7 +44,7 @@ public class ItemController {
     }
 
     @PostMapping("/items")
-    public ResponseEntity<ResponseItemDto> addItem(@RequestBody CreateItemDto itemEntity) {
+    public ResponseEntity<ResponseItemDto> addItem(@RequestBody @Valid CreateItemDto itemEntity) {
         return ResponseEntity.status(HttpStatus.CREATED).body(itemService.AddItem(itemEntity));
     }
 

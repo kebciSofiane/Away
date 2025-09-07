@@ -5,6 +5,7 @@ import com.away.db.models.UserEntity;
 import com.away.dto.createDto.CreateUserDto;
 import com.away.dto.responseDto.ResponseUserDto;
 import com.away.dto.updateDto.UpdateUserDto;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,12 +40,12 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<ResponseUserDto> addUser(@RequestBody CreateUserDto user) {
+    public ResponseEntity<ResponseUserDto> addUser(@RequestBody @Valid CreateUserDto user) {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.addUser(user));
     }
 
     @PutMapping("/users/{id}")
-    public ResponseEntity<ResponseUserDto> updateUser(@RequestBody UpdateUserDto updateUserDto, @PathVariable long id) {
+    public ResponseEntity<ResponseUserDto> updateUser(@RequestBody @Valid UpdateUserDto updateUserDto, @PathVariable long id) {
         return  ResponseEntity.ok(userService.updateUser(updateUserDto, id));
     }
 
