@@ -9,6 +9,7 @@ import com.away.exceptions.user.UserAlreadyExistsException;
 import com.away.exceptions.user.UserNotFoundException;
 import com.away.mappers.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,11 +19,13 @@ public class UserService {
 
     private final UserRepository userRepository;
     private  final UserMapper userMapper;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository, UserMapper userMapper) {
+    public UserService(UserRepository userRepository, UserMapper userMapper, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
 
@@ -47,7 +50,11 @@ public class UserService {
         if (userRepository.existsByUserEmail(createUserDto.getUserEmail())) {
             throw new UserAlreadyExistsException(createUserDto.getUserEmail());
         }
-        return  userMapper.toResponseUserDTO(userRepository.save(userMapper.toUserEntity(createUserDto)));
+
+        UserEntity user = userMapper.toUserEntity(createUserDto);
+        user.setUserPass(passwordEncoder.encode(createUserDto.getUserPass()));
+
+        return  userMapper.toResponseUserDTO(userRepository.save(user));
     }
 
     public ResponseUserDto updateUser(UpdateUserDto updatedUserDto, long userId) {
