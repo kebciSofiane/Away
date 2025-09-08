@@ -1,16 +1,20 @@
 package com.away.controller;
 
+import com.away.Services.UserService;
 import com.away.db.models.UserEntity;
 import com.away.db.repositories.UserRepository;
+import com.away.dto.createDto.CreateUserDto;
 import com.away.dto.loginDto.LoginRequestDto;
-import com.away.dto.loginDto.LoginResponseDto;
+import com.away.dto.responseDto.ResponseUserDto;
+import com.away.exceptions.user.UserNotFoundException;
 import com.away.security.JwtService;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/auth")
@@ -19,29 +23,34 @@ public class AuthController {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
+    private final UserService userService;
 
-    public AuthController(UserRepository userRepository, PasswordEncoder passwordEncoder, JwtService jwtService) {
+    public AuthController(UserRepository userRepository,
+                          PasswordEncoder passwordEncoder,
+                          JwtService jwtService, UserService userService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
+        this.userService = userService;
     }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponseDto> login(@RequestBody LoginRequestDto loginDto) {
-        UserEntity user = userRepository.findByUserEmail(loginDto.getEmail())
-                .orElseThrow(() -> new RuntimeException("User not found"));
+    public ResponseEntity<String> login(@RequestBody LoginRequestDto loginRequestDto) {
+        UserEntity user = userRepository.findByUserName(loginRequestDto.getUserName())
+                .orElseThrow(() -> new UserNotFoundException(loginRequestDto.getUserName()));
 
-        if (!passwordEncoder.matches(loginDto.getPassword(), user.getUserPass())) {
-            throw new RuntimeException("Invalid credentials");
+        if (!passwordEncoder.matches(loginRequestDto.getUserPass(), user.getUserPass())) {
+            return ResponseEntity.status(401).body("Invalid credentials");
         }
 
-        String token = jwtService.generateToken(user);
-
-        LoginResponseDto response = new LoginResponseDto();
-        response.setToken(token);
-        response.setUserName(user.getUserName());
-        response.setUserEmail(user.getUserEmail());
-
-        return ResponseEntity.ok(response);
+        String token = jwtService.generateToken(user.getUserName());
+        return ResponseEntity.ok(token);
     }
+
+    @PostMapping("/register")
+    public ResponseEntity<ResponseUserDto> addUser(@RequestBody @Valid CreateUserDto user) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.addUser(user));
+    }
+
+
 }

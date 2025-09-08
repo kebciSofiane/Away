@@ -29,7 +29,6 @@ public class UserService {
     }
 
 
-
     public List<ResponseUserDto> getAllUsers() {
         return userMapper.toResponseUserDTOList(userRepository.findAll());
     }

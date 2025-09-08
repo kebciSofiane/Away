@@ -39,10 +39,6 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserByEmail(email));
     }
 
-    @PostMapping("/users")
-    public ResponseEntity<ResponseUserDto> addUser(@RequestBody @Valid CreateUserDto user) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(userService.addUser(user));
-    }
 
     @PutMapping("/users/{id}")
     public ResponseEntity<ResponseUserDto> updateUser(@RequestBody @Valid UpdateUserDto updateUserDto, @PathVariable long id) {
